@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [GameController::class, 'index'])->name('index');
+Route::post('rungame', [GameController::class, 'rungame'])->name('rungame');
+Route::post('bet', [GameController::class, 'bet'])->name('makebet');
+Route::get('newgame', [GameController::class, 'newgame'])->name('newgame');

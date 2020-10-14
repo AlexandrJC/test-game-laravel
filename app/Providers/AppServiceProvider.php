@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Repositories\UserSessionRepository;
+use App\Repositories\IAppStorageInterface;
+use Illuminate\Support\Facades\Config;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +16,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        if (Config::get('game.typeOfStorage') == 'session') {
+            $this->app->bind(IAppStorageInterface::class, UserSessionRepository::class);
+        }
     }
 
     /**
